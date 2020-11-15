@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "messages.h"
+#include "network.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,6 +20,7 @@ public:
 private:
     Ui::MainWindow *ui;
     Messages* messages;
+    Network* network;
 
 private slots:
     void doCheckAndSendMessages();

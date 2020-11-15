@@ -8,10 +8,14 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
     //Create the Message
     messages = new Messages();
+
     //Attach it to the List View
     ui->messagesListView->setModel(messages);
 
-    //connect the sendButton and ReturnKey to message function
+    //Create the network layer
+    network = new Network(this);
+
+    //connect the sendButton and ReturnKey to validation/send method
     connect(this->ui->sendButton, &QPushButton::pressed, this, &MainWindow::doCheckAndSendMessages);
     connect(this->ui->messageEdit, &QLineEdit::returnPressed, this, &MainWindow::doCheckAndSendMessages);
 }
