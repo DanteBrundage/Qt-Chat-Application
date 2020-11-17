@@ -1,6 +1,6 @@
 #include "network.h"
 
-Network::Network(QObject *parent) : QObject(parent)
+Network::Network(quint64 port, QObject *parent) : QObject(parent)
 {
 
     //initialize server
@@ -8,7 +8,7 @@ Network::Network(QObject *parent) : QObject(parent)
 
     //ask the server to listen
     //if it cannot listen, something out of my my conytol went wrong and I should exit
-    if(!server->listen(QHostAddress::AnyIPv4, 25565)) {
+    if(!server->listen(QHostAddress::AnyIPv4, port)) {
         qDebug() << "Could not initialize Network layer server, exiting";
         //server->close();
         exit(-1);
@@ -25,4 +25,16 @@ void Network::didRecieveClientConnection() {
     //close the server
     //this will prevent any further connection
     server->close();
+}
+
+void Network::connectToClient(QHostAddress address, quint64 port){
+    //close our server for incoming connections, since we are starting an outgoing connection
+    //Note: no error checking, we assume we input a valid and active IP and port
+    server->close();
+
+    //create a new peerSocket
+    this->peerSocket = new QTcpSocket();
+
+    qDebug() << "Attempting outgoing connection";
+    peerSocket->connectToHost(address, port);
 }
