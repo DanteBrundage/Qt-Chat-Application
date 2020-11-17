@@ -16,17 +16,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    connecttodialog.cpp \
     main.cpp \
     mainwindow.cpp \
     messages.cpp \
     network.cpp
 
 HEADERS += \
+    connecttodialog.h \
     mainwindow.h \
     messages.h \
     network.h
 
 FORMS += \
+    connecttodialog.ui \
     mainwindow.ui
 
 # Default rules for deployment.

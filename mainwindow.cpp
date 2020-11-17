@@ -18,6 +18,9 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     //connect the sendButton and ReturnKey to validation/send method
     connect(this->ui->sendButton, &QPushButton::pressed, this, &MainWindow::doCheckAndSendMessages);
     connect(this->ui->messageEdit, &QLineEdit::returnPressed, this, &MainWindow::doCheckAndSendMessages);
+
+    //connect the connectButton to show connect UI
+    connect(this->ui->connectButton, &QPushButton::pressed, this, &MainWindow::openConnectToDialog);
 }
 
 MainWindow::~MainWindow()
@@ -41,5 +44,11 @@ void MainWindow::doCheckAndSendMessages()
 
     //append to the model
     this->messages->append(messageString);
+}
+
+void MainWindow::openConnectToDialog(){
+
+    ConnectToDialog* connectToDialog =  new ConnectToDialog();
+    connectToDialog->show();
 }
 

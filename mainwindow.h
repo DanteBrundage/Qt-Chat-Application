@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "messages.h"
 #include "network.h"
+#include "connecttodialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -24,6 +25,7 @@ private:
 
 private slots:
     void doCheckAndSendMessages();
+    void openConnectToDialog();
 
 };
 #endif // MAINWINDOW_H
