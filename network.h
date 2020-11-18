@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QTcpServer>
 #include <QTcpSocket>
+#include <vector>
 
 class Network: public QObject
 {
@@ -13,11 +14,16 @@ public:
 private:
     QTcpServer* server;
     QTcpSocket* peerSocket;
+    std::vector<char> buffer;
+    void didConnect();
 signals:
+    void didRecieveMessage(QString message, QString peerAddressString);
 public slots:
     void  connectToClient(QHostAddress address, quint64 port);
+    void sendMessageToPeer(QString  message);
 private slots:
     void didRecieveClientConnection();
+    void didRecieveData();
 
 };
 

@@ -10,6 +10,8 @@ class Messages : public QStringListModel
 public:
     Messages();
     void append(QString message);
+public slots:
+    void appendNetworkMessage(QString message, QString addressString);
 };
 
 #endif // MESSAGES_H

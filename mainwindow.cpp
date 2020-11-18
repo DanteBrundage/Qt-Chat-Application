@@ -23,8 +23,10 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
     //Create the Message
     messages = new Messages();
+    //connect the Messages model to the Network
+    connect(network, &Network::didRecieveMessage, messages, &Messages::appendNetworkMessage);
 
-    //Attach it to the List View
+    //Attach the messages model to the List View
     ui->messagesListView->setModel(messages);
 
     //connect the sendButton and ReturnKey to validation/send method
@@ -56,6 +58,9 @@ void MainWindow::doCheckAndSendMessages()
 
     //append to the model
     this->messages->append(messageString);
+
+    //send over the network
+    network->sendMessageToPeer(messageString);
 }
 
 void MainWindow::openConnectToDialog(){
