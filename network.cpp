@@ -81,13 +81,13 @@ void Network::didConnect(){
 void Network::sendMessageToPeer(QString message){
     if(peerSocket != nullptr){
         //prepare message for sending by appending return
-        message.append("/n"); //this will signify end of message
+        message.append("\n"); //this will signify end of message
 
         //grab the data from the QString, in the form of QData*
         const QChar* data = message.constData();
         const int messageDataSize = message.size();
 
-        //allocate a chat to hold our message
+        //allocate a char to hold our message
         char* messsageCharArr = (char*)calloc(messageDataSize, sizeof (char));
 
         //copy charcater by charcater from out data to our char* array
