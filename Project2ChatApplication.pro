@@ -1,4 +1,4 @@
-QT       += core gui network
+QT       += core gui network requires(qtConfig(udpsocket))
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -20,13 +20,15 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     messages.cpp \
-    network.cpp
+    network.cpp \
+    reciever.cpp
 
 HEADERS += \
     connecttodialog.h \
     mainwindow.h \
     messages.h \
-    network.h
+    network.h \
+    reciever.h
 
 FORMS += \
     connecttodialog.ui \
